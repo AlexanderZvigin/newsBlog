@@ -1,4 +1,5 @@
 <?php
+session_start();
 function check_inputs($title,$shortText,$tematic,$fulltext)
 {
   if (empty($title) OR empty($shortText)  OR empty($tematic)  OR empty($fulltext)) {
@@ -17,8 +18,11 @@ $pub_date=date("m.d.y");
 include 'connect.php';
 $sql="INSERT INTO news(`title`,`text`,`date`,`tematic`,`short_text`) VALUES('$title','$fulltext','$pub_date','$tematic','$shortText')";
 $result=$mysqli->query($sql);
-var_dump($result);
-
-
+$_SESSION['error_add']='';
+header('Location:/admin_add_news.php');
+ }
+ else {
+   $_SESSION['error_add'][0]='Ошибка при добавлении новости';
+   header('Location:/admin_add_news.php');
  }
 ?>

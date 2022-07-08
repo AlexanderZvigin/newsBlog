@@ -1,4 +1,5 @@
 <?php
+session_start();
 include 'connect.php';
 $sql="SELECT * FROM tematics";
 $result=$mysqli->query($sql);
@@ -72,6 +73,16 @@ $tematics[]=$result->fetch_array();
                 </div>
             </div>
         </div>
+        <?php
+        if (!empty($_SESSION['error_add'])) {
+          echo '<div class="alert alert-danger" role="alert" ';
+          echo '</div>';
+    foreach ($_SESSION['error_add'] as $key => $error) {
+      echo $error;
+    }
+        }
+        ?>
+
         <div class="col py-3">
           <form action="news_save.php" method="post">
           <div class="form-group">
