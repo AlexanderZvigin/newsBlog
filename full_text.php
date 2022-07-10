@@ -1,19 +1,27 @@
 <?php
 session_start();
+error_reporting(0);
 require_once 'header.php';
 include 'connect.php';
 $id=$_GET['id'];
+$_SESSION['newId']=$id;
 $sql="SELECT * FROM news WHERE `id`='$id'";
 $result=$mysqli->query($sql);
 for ($i=0; $i <$result->num_rows ; $i++) {
   $full_new=$result->fetch_array();
 }
-$sql2="SELECT * FROM comments";
-$result2=$mysqli->query($sql2);
-for ($i=0; $i <$result2->num_rows ; $i++) {
-  $comments[]=$result2->fetch_array();
+$sql_comments="SELECT * FROM comments WHERE `newsid`='$id'";
+$result_comments=$mysqli->query($sql_comments);
+for ($i=0; $i <$result_comments->num_rows ; $i++) {
+  $comments[]=$result_comments->fetch_assoc();
 }
-var_dump($_SESSION['userid']);
+$username=$_SESSION['username'];
+$sql_user="SELECT `username` FROM comments WHERE `username`='$username'";
+$result_user=$mysqli->query($sql_user);
+for ($i=0; $i <$result_user->num_rows ; $i++) {
+  $username=$result_user->fetch_assoc();
+}
+var_dump($username['username']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -47,6 +55,10 @@ var_dump($_SESSION['userid']);
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
+        <?php if (empty($comments)) {
+          $comments[0]='Комментариев пока нету';
+
+        } ?>
         <?php foreach ($comments as $key => $value): ?>
         <div class="card">
           <div class="card-body">
@@ -64,18 +76,18 @@ var_dump($_SESSION['userid']);
 
           </div>
   <?php endforeach; ?>
-  <form action="comment_save.php" method="post">
+  <form action="comment_save.php?username=<?php echo $username['username'];?>" method="post">
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
-
               <div class="form-outline w-100">
-                <textarea name="comment" class="form-control" id="textAreaExample" rows="4"
+                <textarea maxlength="100" name="comment" class="form-control" id="textAreaExample" rows="4"
                   style="background: #fff;"></textarea>
-                <label class="form-label" for="textAreaExample">Комментарий</label>
+                <label class="form-label" for="textAreaExample">Комментарий</label><br>
+                <label class="form-label" for="textAreaExample">Ваш псевдоним: <?php echo $username['username'] ?></label>
               </div>
             </div>
             <div class="float-end mt-2 pt-1">
-              <button type="button" class="btn btn-primary btn-sm">Отправить</button>
+              <button type="submit" class="btn btn-primary btn-sm">Отправить</button>
             </form>
             </div>
           </div>
