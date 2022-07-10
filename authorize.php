@@ -14,8 +14,9 @@ function user_authorize($username,$mysqli)
 {
 $sql="SELECT id FROM users WHERE `username`='$username'";
 $result=$mysqli->query($sql);
+$userid=$result->fetch_assoc();
 if ($result->num_rows==1) {
-  return true;
+  return $userid;
 }
 else {
   return false;
@@ -53,7 +54,9 @@ else {
 if (admin_pass($name,$pass)==true) {
   header('Location:admin_panel.php');
 }
-else if (user_authorize($name,$mysqli)==true AND pass_check($pass,$checkpass)==true ) {
+else if (user_authorize($name,$mysqli)!=false AND pass_check($pass,$checkpass)==true ) {
+ $_SESSION['username']=$name;
+ $_SESSION['userid']=user_authorize($name,$mysqli);
  header('Location:index.php');
 }
 else {

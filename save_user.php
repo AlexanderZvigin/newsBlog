@@ -22,22 +22,6 @@ if (empty($_POST['password'])) {
   $_SESSION[error_message[5]]="Пожалуйста,введите пароль";
   $validate_pass='false';
 }
-if (empty($_POST['country'])) {
-  $_SESSION[error_message[6]]="Пожалуйста,введите страну";
-  $validate_country='false';
-}
-else {
-  $validate_country='true';
-  $country=trim($_POST['country']);
-}
-if (empty($_POST['town'])) {
-  $_SESSION[error_message[7]]="Пожалуйста,введите город";
-  $validate_country='false';
-}
-else {
-  $validate_town='true';
-  $town=trim($_POST['town']);
-}
 if (strlen($_POST['username'])<5) {
   $_SESSION[error_message[0]]="Имя пользователя должно содержать минимум 5 символов";
   $validate_user='false';
@@ -66,7 +50,7 @@ else {
   $checkpassword=trim($_POST['checkpassword']);
   $validate_pass='true';
 }
-if ($validate_user and $validate_pass and $validate_country and $validate_email and $validate_town =='true' ) {
+if ($validate_user and $validate_pass  and $validate_email =='true' ) {
 $reg_date=date("m.d.y");
 if (empty_username($name,$mysqli)==true) {
 header('Location:reg.php');
@@ -74,8 +58,7 @@ $_SESSION[error_message[8]]="Псевдоним занят";
 exit;
 }
 $result_check=$mysqli->query($sql_check);
-$sql="INSERT INTO `users`(`username`,`password`,`email`,`country`,`town`,`gender`,`RegistrateDate`) VALUES('$name','$password','$email',
-'$country','$town','$gender','$reg_date')";
+$sql="INSERT INTO `users`(`username`,`password`,`email`) VALUES('$name','$password','$email')";
 $result=$mysqli->query($sql);
 if ($result==true) {
 header('Location:index.php');

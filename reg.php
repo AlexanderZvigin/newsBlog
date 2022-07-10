@@ -140,11 +140,6 @@ echo  '</div>' ;
  <div class="col-lg-12">
  <div class="form-group">
  <input  maxlength="15" name="email" class="form-control" type="email" placeholder="Адрес электронной почты">
- <input  maxlength="15" name="country" class="form-control" type="text" placeholder="Страна">
- <input  maxlength="15" name="town" class="form-control" type="text" placeholder="Город">
- <input  maxlength="15" name="gender" class="form-control" type="text" placeholder="Пол">
-
-
 
  </div>
  </div>

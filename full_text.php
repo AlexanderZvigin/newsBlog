@@ -1,13 +1,19 @@
 <?php
+session_start();
 require_once 'header.php';
 include 'connect.php';
 $id=$_GET['id'];
 $sql="SELECT * FROM news WHERE `id`='$id'";
 $result=$mysqli->query($sql);
 for ($i=0; $i <$result->num_rows ; $i++) {
-  $full_new=$result->fetch_assoc();
+  $full_new=$result->fetch_array();
 }
-
+$sql2="SELECT * FROM comments";
+$result2=$mysqli->query($sql2);
+for ($i=0; $i <$result2->num_rows ; $i++) {
+  $comments[]=$result2->fetch_array();
+}
+var_dump($_SESSION['userid']);
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -41,45 +47,36 @@ for ($i=0; $i <$result->num_rows ; $i++) {
   <div class="container my-5 py-5">
     <div class="row d-flex justify-content-center">
       <div class="col-md-12 col-lg-10 col-xl-8">
+        <?php foreach ($comments as $key => $value): ?>
         <div class="card">
           <div class="card-body">
             <div class="d-flex flex-start align-items-center">
 
+
+
               <div>
-                <h6 class="fw-bold text-primary mb-1">Псевдоним пользователя</h6>
+                <h6 class="fw-bold text-primary mb-1"><?php echo $value['username'];?></h6>
 
                 </p>
               </div>
             </div>
+            <p class="mt-3 mb-4 pb-2">  <?php echo $value['text'];?>  </p>
 
-            <p class="mt-3 mb-4 pb-2">
-            Текст комментария
-            </p>
-
-            <div class="small d-flex justify-content-start">
-              <a href="#!" class="d-flex align-items-center me-3">
-                <i class="far fa-thumbs-up me-2"></i>
-                <p class="mb-0">Лайки:</p>
-              </a>
-              <a href="#!" class="d-flex align-items-center me-3">
-                <i class="far fa-comment-dots me-2"></i>
-                <p class="mb-0">Дизлайки:</p>
-              </a>
-
-            </div>
           </div>
+  <?php endforeach; ?>
+  <form action="comment_save.php" method="post">
           <div class="card-footer py-3 border-0" style="background-color: #f8f9fa;">
             <div class="d-flex flex-start w-100">
 
               <div class="form-outline w-100">
-                <textarea class="form-control" id="textAreaExample" rows="4"
+                <textarea name="comment" class="form-control" id="textAreaExample" rows="4"
                   style="background: #fff;"></textarea>
                 <label class="form-label" for="textAreaExample">Комментарий</label>
               </div>
             </div>
             <div class="float-end mt-2 pt-1">
               <button type="button" class="btn btn-primary btn-sm">Отправить</button>
-
+            </form>
             </div>
           </div>
         </div>
