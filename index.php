@@ -22,33 +22,39 @@ for ($i=0; $i <mysqli_num_rows($result) ; $i++) {
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
           <a class="nav-link" href="index.php">Главная <span class="sr-only"></span></a>
-
+</li>
+<li class="nav-item active">
+  <a class="nav-link" href="exit.php">Выход<span class="sr-only"></span></a>
+</li>
+<li class="nav-item active">
+  <a class="nav-link" href="#">Сортировка:<span class="sr-only"></span></a>
+</li>
 
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          <form class="form-inline my-2 my-lg-0" action="news_sorted.php" method="post">
+          <select name="sort" class="nav-link dropdown-toggle" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Сортировать по:
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <div class="dropdown-divider"></div>
-            <a class="dropdown-item" href="#">Something else here</a>
-          </div>
+<option> А-Я</option>
+<option> Я-А</option>
+<option>По дате</option>
+          </select>
+          <li class="nav-item active">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Сортировать</button>
+          </li>
         </li>
-
       </ul>
-      <form class="form-inline my-2 my-lg-0">
-        <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+    </form>
+      <form action="news_find.php" class="form-inline my-2 my-lg-0" method="post">
+        <input name="search" class="form-control mr-sm-2" type="search" placeholder="Поиск" aria-label="Поиск">
+        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Поиск</button>
       </form>
+
     </div>
   </nav>
-
   <?php foreach ($news as  $value): ?>
     <div class="container">
     <div class="row">

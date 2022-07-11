@@ -24,9 +24,7 @@
                     </li>
 
                     <li>
-                        <a href="#" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Обращения</span></a>
-                    </li>
+
                     <li>
                         <a href="admin_add_news.php" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Добавить новость</span></a>
@@ -43,11 +41,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
-                        <a href="#submenu3" data-bs-toggle="collapse" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-grid"></i> <span class="ms-1 d-none d-sm-inline">Новости</span> </a>
 
-                    </li>
                     <li>
                         <a href="users." class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-people"></i> <span class="ms-1 d-none d-sm-inline">Пользователи</span> </a>
@@ -65,13 +59,9 @@
             </div>
         </div>
         <div class="col py-3">
-            <h3>Left Sidebar with Submenus</h3>
-            <p class="lead">
-                An example 2-level sidebar with collasible menu items. The menu functions like an "accordion" where only a single
-                menu is be open at a time. While the sidebar itself is not toggle-able, it does responsively shrink in width on smaller screens.</p>
-            <ul class="list-unstyled">
-                <li><h5>Responsive</h5> shrinks in width, hides text labels and collapses to icons only on mobile</li>
-            </ul>
+            <h3>Добро пожаловать в админку!</h3>
+
+
         </div>
     </div>
 </div>

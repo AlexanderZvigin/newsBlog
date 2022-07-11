@@ -22,10 +22,7 @@
                         </a>
                     </li>
 
-                    <li>
-                        <a href="admin_letters.php" class="nav-link px-0 align-middle">
-                            <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Обращения</span></a>
-                    </li>
+                    
                     <li>
                         <a href="admin_add_news.php" class="nav-link px-0 align-middle">
                             <i class="fs-4 bi-table"></i> <span class="ms-1 d-none d-sm-inline">Добавить новость</span></a>

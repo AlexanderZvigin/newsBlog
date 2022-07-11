@@ -151,7 +151,9 @@ echo  '</div>' ;
  </div>
  <div class="col-lg-12">
  <button type="submit" class="btn btn-md btn-block btn-danger-gradiant text-white border-0"><span>Войти</span></button>
- <!-- -->
+ <div class="col-lg-12 text-center mt-4">
+ У вас еще нет аккаунта? <a href="reg.php.php" class="text-danger">Регистрация</a>
+ </div>
  </div>
  </div>
  </form>

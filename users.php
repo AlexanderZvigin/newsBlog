@@ -27,9 +27,7 @@ for ($i=0; $i <$result->num_rows ; $i++) {
               <th scope="col">Псевдоним</th>
               <th scope="col">Пароль</th>
               <th scope="col">Эл.почта</th>
-              <th scope="col">Город</th>
-              <th scope="col">Страна</th>
-              <th scope="col">Пол</th>
+
             </tr>
           </thead>
           <tbody>
@@ -39,9 +37,7 @@ for ($i=0; $i <$result->num_rows ; $i++) {
               <td><?php echo $user['username'] ?></td>
               <td><?php echo $user['password'] ?></td>
               <td><?php echo $user['email'] ?></td>
-              <td><?php echo $user['town'] ?></td>
-              <td><?php echo $user['country'] ?></td>
-              <td><?php echo $user['gender'] ?></td>
+
             </tr>
               <?php endforeach; ?>
           </tbody>
